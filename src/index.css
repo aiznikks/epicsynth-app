@@ -6,52 +6,52 @@
 
 @layer base {
   :root {
-    /* Dark theme background system */
-    --background: 0 0% 7%;
-    --background-secondary: 0 0% 10%;
-    --background-card: 0 0% 12%;
-    --foreground: 0 0% 98%;
+    /* Light, kid-friendly background system */
+    --background: 0 0% 98%;
+    --background-secondary: 0 0% 95%;
+    --background-card: 0 0% 100%;
+    --foreground: 0 0% 8%;
 
-    /* Primary orange from reference screens */
-    --primary: 16 100% 60%;
+    /* Primary black for kid-friendly design */
+    --primary: 0 0% 8%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 16 100% 55%;
+    --primary-hover: 0 0% 15%;
 
-    /* Secondary grays */
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 85%;
-    --secondary-hover: 0 0% 20%;
+    /* Soft secondary colors */
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 8%;
+    --secondary-hover: 0 0% 88%;
 
-    /* Muted tones */
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
+    /* Gentle muted tones */
+    --muted: 0 0% 88%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Accent colors */
-    --accent: 16 100% 60%;
+    /* Fun accent colors for kids */
+    --accent: 142 71% 45%;
     --accent-foreground: 0 0% 100%;
 
     /* System colors */
     --destructive: 0 84% 55%;
     --destructive-foreground: 0 0% 98%;
 
-    /* Interactive elements */
-    --border: 0 0% 25%;
-    --input: 0 0% 15%;
-    --ring: 16 100% 60%;
+    /* Kid-friendly interactive elements */
+    --border: 0 0% 85%;
+    --input: 0 0% 98%;
+    --ring: 0 0% 8%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(16 100% 60%), hsl(16 100% 70%));
-    --gradient-background: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 10%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 12%), hsl(0 0% 15%));
+    /* Gentle gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 0% 20%));
+    --gradient-background: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 95%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(0 0% 98%));
 
-    /* Shadows */
-    --shadow-soft: 0 4px 20px hsla(0, 0%, 0%, 0.25);
-    --shadow-medium: 0 8px 30px hsla(0, 0%, 0%, 0.4);
-    --shadow-strong: 0 12px 40px hsla(0, 0%, 0%, 0.6);
-    --shadow-orange: 0 8px 25px hsla(16, 100%, 60%, 0.3);
+    /* Soft, friendly shadows */
+    --shadow-soft: 0 2px 12px hsla(0, 0%, 0%, 0.08);
+    --shadow-medium: 0 4px 20px hsla(0, 0%, 0%, 0.12);
+    --shadow-strong: 0 8px 30px hsla(0, 0%, 0%, 0.15);
+    --shadow-primary: 0 4px 15px hsla(0, 0%, 0%, 0.2);
 
-    /* Border radius scale */
-    --radius: 12px;
+    /* Friendly, rounded corners */
+    --radius: 16px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -138,14 +138,14 @@
   }
 
   .story-button-primary {
-    @apply story-button text-primary-foreground;
+    @apply story-button text-primary-foreground font-semibold text-lg;
     background: var(--gradient-primary);
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-primary);
   }
 
   .story-button-primary:hover {
-    @apply brightness-110;
-    box-shadow: var(--shadow-orange), 0 0 30px hsla(16, 100%, 60%, 0.4);
+    @apply brightness-105 scale-105;
+    box-shadow: var(--shadow-primary), 0 0 20px hsla(0, 0%, 0%, 0.25);
   }
 
   .story-button-secondary {
@@ -160,8 +160,8 @@
   }
 
   .mobile-container {
-    @apply mx-auto max-w-sm overflow-hidden rounded-t-2xl bg-background-card shadow-strong;
-    @apply min-h-screen md:my-8 md:min-h-[800px];
+    @apply mx-auto max-w-sm overflow-hidden rounded-3xl bg-background-card shadow-medium border border-border/50;
+    @apply min-h-screen md:my-4 md:min-h-[900px];
   }
 
   .step-progress {

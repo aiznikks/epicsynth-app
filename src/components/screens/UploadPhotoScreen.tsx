@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { Upload, Camera, Image as ImageIcon } from 'lucide-react';
+import { Upload, Camera, Image as ImageIcon, Sparkles } from 'lucide-react';
 import { StoryData } from '../StorytellingFlow';
+import { FunButton } from '../ui/fun-button';
 
 interface UploadPhotoScreenProps {
   storyData: StoryData;
@@ -41,19 +42,23 @@ export const UploadPhotoScreen: React.FC<UploadPhotoScreenProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 flex flex-col items-center justify-center p-6 space-y-6">
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold">Upload Your Photo</h1>
-          <p className="text-muted-foreground">
-            Choose a photo to bring your story to life
+    <div className="flex flex-col h-full bg-gradient-to-b from-purple-50 to-blue-50">
+      <div className="flex-1 flex flex-col items-center justify-center p-8 space-y-8">
+        <div className="text-center space-y-4">
+          <div className="flex items-center justify-center gap-2">
+            <Sparkles className="w-8 h-8 text-purple-500" />
+            <h1 className="text-3xl font-bold text-foreground">Add Your Photo!</h1>
+            <Sparkles className="w-8 h-8 text-purple-500" />
+          </div>
+          <p className="text-muted-foreground text-lg">
+            📸 Pick a special photo to start your magical story adventure!
           </p>
         </div>
 
         {/* Upload Area */}
         <div 
-          className={`story-card w-full aspect-square flex flex-col items-center justify-center border-2 border-dashed transition-all cursor-pointer hover:border-primary/50 ${
-            isUploading ? 'border-primary animate-pulse' : 'border-border/30'
+          className={`story-card w-full aspect-square flex flex-col items-center justify-center border-4 border-dashed transition-all cursor-pointer rounded-3xl p-6 ${
+            isUploading ? 'border-primary animate-pulse bg-purple-50' : 'border-border/40 hover:border-primary/70 hover:bg-blue-50'
           }`}
           onClick={handleUploadClick}
         >
@@ -77,19 +82,21 @@ export const UploadPhotoScreen: React.FC<UploadPhotoScreenProps> = ({
               </div>
             </div>
           ) : (
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-6">
               {isUploading ? (
                 <div className="animate-pulse-glow">
-                  <Upload className="w-12 h-12 mx-auto text-primary" />
-                  <p className="text-primary font-medium">Uploading...</p>
+                  <Upload className="w-20 h-20 mx-auto text-primary" />
+                  <p className="text-primary font-bold text-xl">✨ Adding your photo...</p>
                 </div>
               ) : (
                 <>
-                  <ImageIcon className="w-12 h-12 mx-auto text-muted-foreground" />
+                  <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-full p-6 w-24 h-24 mx-auto flex items-center justify-center">
+                    <ImageIcon className="w-12 h-12 text-purple-600" />
+                  </div>
                   <div>
-                    <p className="font-medium">Tap to upload photo</p>
-                    <p className="text-sm text-muted-foreground">
-                      JPG, PNG up to 10MB
+                    <p className="font-bold text-xl text-foreground">🎈 Tap to choose your photo!</p>
+                    <p className="text-base text-muted-foreground mt-2">
+                      Pick any fun picture you like! 📱
                     </p>
                   </div>
                 </>
@@ -99,26 +106,28 @@ export const UploadPhotoScreen: React.FC<UploadPhotoScreenProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 w-full">
-          <button
+        <div className="flex gap-4 w-full">
+          <FunButton
             onClick={handleUploadClick}
-            className="story-button-secondary flex-1"
+            variant="secondary"
+            className="flex-1"
           >
-            <Camera className="w-5 h-5 mr-2" />
-            {storyData.photo ? 'Change Photo' : 'Browse'}
-          </button>
+            <Camera className="w-6 h-6" />
+            {storyData.photo ? '🔄 Change Photo' : '📷 Browse Photos'}
+          </FunButton>
         </div>
       </div>
 
       {/* Next Button */}
       {storyData.photo && (
-        <div className="p-6 border-t border-border/20 animate-slide-up">
-          <button
+        <div className="p-8 border-t border-border/20 animate-slide-up bg-white/80">
+          <FunButton
             onClick={handleNext}
-            className="story-button-primary w-full"
+            className="w-full"
+            size="lg"
           >
-            Continue
-          </button>
+            🚀 Let's Continue!
+          </FunButton>
         </div>
       )}
     </div>
