@@ -2,41 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Storytelling App Design System - Based on reference screens */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark theme background system */
+    --background: 0 0% 7%;
+    --background-secondary: 0 0% 10%;
+    --background-card: 0 0% 12%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Primary orange from reference screens */
+    --primary: 16 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 16 100% 55%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Secondary grays */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 85%;
+    --secondary-hover: 0 0% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Muted tones */
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Accent colors */
+    --accent: 16 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* System colors */
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Interactive elements */
+    --border: 0 0% 25%;
+    --input: 0 0% 15%;
+    --ring: 16 100% 60%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(16 100% 60%), hsl(16 100% 70%));
+    --gradient-background: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 10%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 12%), hsl(0 0% 15%));
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsla(0, 0%, 0%, 0.25);
+    --shadow-medium: 0 8px 30px hsla(0, 0%, 0%, 0.4);
+    --shadow-strong: 0 12px 40px hsla(0, 0%, 0%, 0.6);
+    --shadow-orange: 0 8px 25px hsla(16, 100%, 60%, 0.3);
 
-    --radius: 0.5rem;
+    /* Border radius scale */
+    --radius: 12px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -92,6 +107,10 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Animations */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @layer base {
@@ -101,5 +120,61 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-background);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Storytelling App Component Styles */
+  .story-card {
+    @apply rounded-xl border border-border/20 shadow-soft;
+    background: var(--gradient-card);
+  }
+
+  .story-button {
+    @apply relative overflow-hidden rounded-lg px-6 py-3 font-medium transition-all duration-300;
+    @apply border border-border/20 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .story-button-primary {
+    @apply story-button text-primary-foreground;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-orange);
+  }
+
+  .story-button-primary:hover {
+    @apply brightness-110;
+    box-shadow: var(--shadow-orange), 0 0 30px hsla(16, 100%, 60%, 0.4);
+  }
+
+  .story-button-secondary {
+    @apply story-button bg-secondary text-secondary-foreground;
+    @apply hover:bg-secondary-hover;
+  }
+
+  .story-input {
+    @apply w-full rounded-lg border border-border/30 bg-input px-4 py-3;
+    @apply text-foreground placeholder:text-muted-foreground;
+    @apply focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+  }
+
+  .mobile-container {
+    @apply mx-auto max-w-sm overflow-hidden rounded-t-2xl bg-background-card shadow-strong;
+    @apply min-h-screen md:my-8 md:min-h-[800px];
+  }
+
+  .step-progress {
+    @apply h-1 overflow-hidden rounded-full bg-secondary;
+  }
+
+  .step-progress-fill {
+    @apply h-full transition-all duration-500 ease-out;
+    background: var(--gradient-primary);
+  }
+
+  .glass-overlay {
+    @apply backdrop-blur-md;
+    background: hsla(0, 0%, 0%, 0.7);
   }
 }
